@@ -1,31 +1,31 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const ProductSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: [true, 'Please provide a title'],
+      required: [true, "Please provide a title"],
     },
     company: {
       type: String,
-      default: 'stella york',
+      default: "stella york",
     },
     shipping: {
       type: String,
-      default: 'off',
+      default: "off",
     },
     featured: {
       type: Boolean,
       default: false,
     },
-    category: ['Wedding Dress', 'Bridal Wedding Dress'],
+    category: ["Wedding Dress", "Bridal Wedding Dress"],
     price: {
       type: Number,
-      required: [true, 'Please provide a price'],
+      required: [true, "Please provide a price"],
     },
     image: {
       type: String,
-      required: [true, 'Please provide an image'],
+      required: [true, "Please provide an image"],
     },
 
     description: {
@@ -33,26 +33,30 @@ const ProductSchema = new mongoose.Schema(
     },
     color1: {
       type: String,
+      default: "neutral",
     },
     color2: {
       type: String,
+      default: "neutral",
     },
     color3: {
       type: String,
+      default: "neutral",
     },
     color4: {
       type: String,
+      default: "neutral",
     },
     colors: [],
     user: {
       type: mongoose.Types.ObjectId,
-      ref: 'User',
-      required: [true, 'Please provide user'],
+      ref: "User",
+      required: [true, "Please provide user"],
     },
   },
   { timestamps: true }
 );
-ProductSchema.pre('save', function () {
+ProductSchema.pre("save", function () {
   this.colors.unshift(this.color1, this.color2, this.color3, this.color4);
 });
-module.exports = mongoose.model('Product', ProductSchema);
+module.exports = mongoose.model("Product", ProductSchema);
