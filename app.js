@@ -31,8 +31,8 @@ const helmet = require("helmet");
 
 let originUrl =
   process.env.NODE_ENV !== "production"
-    ? "http://localhost:5174"
-    : "https://comfistore-frontend.netlify.app";
+    ? "http://localhost:5173"
+    : "https://typescript-store-project.onrender.com";
 
 app.use(
   cors({
