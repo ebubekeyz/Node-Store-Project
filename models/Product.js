@@ -11,14 +11,16 @@ const ProductSchema = new mongoose.Schema(
       default: "stella york",
     },
     shipping: {
-      type: String,
-      default: "off",
+      type: Boolean,
+      default: false,
     },
     featured: {
       type: Boolean,
       default: false,
     },
-    category: ["Wedding Dress", "Bridal Wedding Dress"],
+    category: {
+      type: String,
+    },
     price: {
       type: Number,
       required: [true, "Please provide a price"],
@@ -31,22 +33,6 @@ const ProductSchema = new mongoose.Schema(
     description: {
       type: String,
     },
-    color1: {
-      type: String,
-      default: "neutral",
-    },
-    color2: {
-      type: String,
-      default: "neutral",
-    },
-    color3: {
-      type: String,
-      default: "neutral",
-    },
-    color4: {
-      type: String,
-      default: "neutral",
-    },
     colors: [],
     user: {
       type: mongoose.Types.ObjectId,
@@ -56,7 +42,5 @@ const ProductSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-ProductSchema.pre("save", function () {
-  this.colors.unshift(this.color1, this.color2, this.color3, this.color4);
-});
+
 module.exports = mongoose.model("Product", ProductSchema);
